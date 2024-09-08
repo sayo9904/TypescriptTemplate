@@ -18,6 +18,7 @@
         "editor.formatOnSave": true,
         "editor.formatOnPaste": true,
         "editor.defaultFormatter": "esbenp.prettier-vscode",
+        "eslint.useFlatConfig": true,
         "markdown.extension.toc.updateOnSave": true,
         "markdown.extension.toc.levels": "2..4",
         "[dockerfile]": {
