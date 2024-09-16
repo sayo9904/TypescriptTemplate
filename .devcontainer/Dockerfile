@@ -1,15 +1,18 @@
 FROM node:20-slim
 
-ENV TZ=Asia/Tokyo
+RUN apt update && apt install -y \
+    locales \
+    git\
+    sudo \
+    && apt clean -y \
+    && rm -rf /var/lib/apt/lists/*
 
+RUN sed -i -e 's/# \(ja_JP.UTF-8\)/\1/' /etc/locale.gen \
+    && locale-gen \
+    && update-locale
 ENV LANG=ja_JP.UTF-8
 
-RUN apt update -y \
-    && apt upgrade -y \
-    && apt install -y sudo \
-    && apt install -y git
+ENV TZ=Asia/Tokyo
 
-RUN usermod -aG sudo node \
-    && echo "node ALL=(ALL) NOPASSWD:ALL" >> /etc/sudoers
-
+RUN usermod -aG sudo node
 USER node
